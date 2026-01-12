@@ -1,7 +1,7 @@
 const snake = [
-  { body: "◉", x: 3, y: 1 },
-  { body: "❍", x: 2, y: 1 },
-  { body: "❍", x: 1, y: 1 },
+  { x: 3, y: 1 },
+  { x: 2, y: 1 },
+  { x: 1, y: 1 },
 ];
 
 const filled = (width) => "-".repeat(width);
@@ -24,9 +24,10 @@ const createScreen = (height, width) => {
 const drawSnake = (screen) => {
   snake.forEach((element) => {
     const { x, y } = { ...element };
-    // console.log({x,i},'inside draw');
-    screen[y][x] = element.body;
+    screen[y][x] = "❍";
   });
+  const { x, y } = snake[0];
+  screen[y][x] = "◉";
 };
 
 const clearScreen = (screen) => {
@@ -45,24 +46,24 @@ const followHead = () => {
     const { x, y } = { ...snake[i - 1] };
     snake[i].x = x;
     snake[i].y = y;
-    // console.log({ x, y });
   }
 };
 
 const movingRight = (screen) => {
-  snake[0].x = snake[0].x !== screen[0].length - 2 ? snake[0].x += 1 : 2;
+  // snake[0].x = 
+  snake[0].x = snake[0].x !== screen[0].length - 2 ? snake[0].x + 1 : 1;
 };
 
 const movingDown = (screen) => {
-  snake[0].y = snake[0].y !== screen.length - 2 ? snake[0].y += 1 : 2;
+  snake[0].y = snake[0].y !== screen.length - 2 ? snake[0].y + 1 : 1;
 };
 
 const movingLeft = (screen) => {
-  snake[0].x = snake[0].x !== 1 ? snake[0].x -= 1 : screen[0].length - 2;
+  snake[0].x = snake[0].x !== 1 ? snake[0].x - 1 : screen[0].length - 2;
 };
 
 const movingUp = (screen) => {
-  snake[0].y = snake[0].y !== 1 ? snake[0].y -= 1 : screen.length - 2;
+  snake[0].y = snake[0].y !== 1 ? snake[0].y - 1 : screen.length - 2;
 };
 
 const DIRECTIONS = {
