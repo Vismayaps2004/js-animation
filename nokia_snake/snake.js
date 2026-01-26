@@ -12,7 +12,9 @@ const main = () => {
   const player = new SnakeDb(db);
   setTimeout(async () => {
     const name = await getName();
-    snakeGame(screen, player, name);
+    const tty = await Deno.readTextFile("./terminal_id.txt");
+    const ttyId = tty.trim();
+    snakeGame(ttyId, screen, player, name);
   }, 1000);
 };
 
