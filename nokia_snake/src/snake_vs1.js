@@ -1,5 +1,5 @@
-import { clearScreen, displayScreen, drawFood, drawSnake } from "./src/snake_vs1.js";
-import { playerDetails } from "./src/snake_vs1.js";
+import { clearScreen, displayScreen, drawFood, drawSnake } from "./screen.js";
+import { playerDetails } from "../data/player_data.js";
 
 const snake = [
   { x: 3, y: 1 },
@@ -83,5 +83,5 @@ export const snakeGame = (screen, player, name) => {
       score += 5;
     }
     clearScreen(screen);
-  }, 1000);
+  }, 300);
 };

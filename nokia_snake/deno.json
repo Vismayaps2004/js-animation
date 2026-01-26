@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@inquirer": "npm:@inquirer/prompts@^8.2.0"
+  }
+}
