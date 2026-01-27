@@ -16,8 +16,6 @@ export class SnakeDb {
     const insertQuery = `INSERT INTO players (name, score) 
     VALUES (?,?);
     `;
-    console.log(name,score);
-
     this.db.prepare(insertQuery).run(name, score);
   }
 

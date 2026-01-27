@@ -1,6 +1,5 @@
 import { clearScreen, displayScreen, drawFood, drawSnake } from "./screen.js";
 import { playerDetails } from "../data/player_data.js";
-import { Deserializer } from "node:v8";
 
 const snake = [
   { x: 3, y: 1 },
@@ -77,16 +76,14 @@ const getDirection = async (tty) => {
 };
 
 export const snakeGame = (tty, screen, player, name) => {
+  let movement = "D";
   let score = 0;
-  const id = setInterval(async () => {
+  const id = setInterval(() => {
     console.clear();
     drawSnake(screen, snake);
     drawFood(screen, food);
     displayScreen(screen);
-    // const movement = (Deno.readTextFileSync("./data/directions.txt"))
-    //   .at(-1)
-    //   .toUpperCase();
-    const movement = await getDirection(tty);
+    console.log(`Your score is : ${score}`);
     DIRECTIONS[movement](screen);
     isGameOver(id, player, name, score);
     if (foodEatenBySnake(snake[0], food)) {
@@ -95,4 +92,8 @@ export const snakeGame = (tty, screen, player, name) => {
     }
     clearScreen(screen);
   }, 300);
+
+  setInterval(async () => {
+    movement = await getDirection(tty);
+  }, 100);
 };
