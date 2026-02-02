@@ -62,6 +62,7 @@ const isGameOver = (id, player, name, score) => {
       clearInterval(id);
       console.log("Game Over");
       playerDetails(player, name, score);
+      Deno.exit();
     }
   }
 };
@@ -71,12 +72,12 @@ const getDirection = async (tty) => {
   t.setRaw(true, { cbreak: true });
   const buffer = new Uint8Array(1);
   await t.read(buffer);
-  const movement = new TextDecoder().decode(buffer);
-  return movement.toUpperCase();
+  const movement1 = new TextDecoder().decode(buffer);
+  MOVEMENT = movement1.toUpperCase();
 };
 
+let MOVEMENT = "D";
 export const snakeGame = (tty, screen, player, name) => {
-  let movement = "D";
   let score = 0;
   const id = setInterval(() => {
     console.clear();
@@ -84,16 +85,13 @@ export const snakeGame = (tty, screen, player, name) => {
     drawFood(screen, food);
     displayScreen(screen);
     console.log(`Your score is : ${score}`);
-    DIRECTIONS[movement](screen);
+    DIRECTIONS[MOVEMENT](screen);
     isGameOver(id, player, name, score);
     if (foodEatenBySnake(snake[0], food)) {
       updateFood();
       score += 5;
     }
     clearScreen(screen);
+    getDirection(tty);
   }, 300);
-
-  setInterval(async () => {
-    movement = await getDirection(tty);
-  }, 100);
 };

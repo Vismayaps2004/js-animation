@@ -21,7 +21,7 @@ export class SnakeDb {
 
   listHighestScores() {
     const listQuery = `SELECT * FROM players 
-    ORDER BY score ASC
+    ORDER BY score DESC
     LIMIT 5;
     `;
     console.table(this.db.prepare(listQuery).all());

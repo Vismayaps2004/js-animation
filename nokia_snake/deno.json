@@ -1,4 +1,7 @@
 {
+  "tasks": {
+    "startGame": "zsh snake.sh"
+  },
   "imports": {
     "@inquirer": "npm:@inquirer/prompts@^8.2.0"
   }
