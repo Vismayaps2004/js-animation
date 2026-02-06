@@ -29,4 +29,4 @@ export const getMouseCoordinates = async () => {
     return mouseCoords;
   }
 };
-getMouseCoordinates();
+// getMouseCoordinates();
