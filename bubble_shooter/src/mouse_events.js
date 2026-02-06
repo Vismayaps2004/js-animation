@@ -10,6 +10,7 @@ const disableMouse = () => {
 
 const parseMouseEvent = (mouseEvent) => {
   const [_, x, y] = mouseEvent.split(";");
+  if (y.includes("m")) return
   return { x: parseInt(x), y: parseInt(y), isDone: false };
 };
 
